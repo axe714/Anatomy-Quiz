@@ -1,4 +1,7 @@
 //global scope variables DOM elements
+
+//timeLeft global scope needed to be able to decrease the timeLeft variable
+var timeLeft = questions.length * 15;
 var timerElement = document.querySelector("#time-left");
 var startButton = document.querySelector("#start");
 var questionsElement = document.querySelector("#questions");
@@ -17,7 +20,7 @@ function startQuiz() {
 //GOOD TO GO - WORKING AS INTENDED
 function startTimer() {
     //set the timer to 15 seconds per question
-    var timeLeft = questions.length * 15;
+    
     var timer = setInterval(function () {
         //decreases timer each second
         timeLeft--;
@@ -52,10 +55,17 @@ function showQuestions () {
         choiceElementButton.setAttribute("value", choice);
         choiceElementButton.textContent = i + 1 + ". " + choice;
         choicesElement.appendChild(choiceElementButton);
+        checkAnswer();
+        
+        function checkAnswer () {
+            choiceElementButton.onclick = function () {
+                if (this.value === currentQuestion.answer) {
+                    alert("Correct!");
+                } else {
+                    alert("Incorrect!");
+                    timeLeft = timeLeft - 15;
+                }
+            }
+        }
     }
 }
-
-
-
-
-
