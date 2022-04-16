@@ -7,7 +7,9 @@ var startButton = document.querySelector("#start");
 var questionsElement = document.querySelector("#questions");
 var endButton = document.querySelector("#end-button");
 var startScreenElement = document.querySelector("#start-screen");
+var currentQuestionIndex = 0;
 startButton.addEventListener("click", startQuiz);
+
 
 function startQuiz() {
     //hides the start screen
@@ -20,7 +22,7 @@ function startQuiz() {
 //GOOD TO GO - WORKING AS INTENDED
 function startTimer() {
     //set the timer to 15 seconds per question
-    
+
     var timer = setInterval(function () {
         //decreases timer each second
         timeLeft--;
@@ -36,11 +38,10 @@ function startTimer() {
 
 
 //showQuestions function [INCOMPLETE - to be added to the startQuiz function]
-function showQuestions () {
-
+function showQuestions() {
     //sets the current question to the first question in the array
-    var currentQuestionIndex = 0;
     var currentQuestion = questions[currentQuestionIndex];
+    var questionElement = document.querySelector("#questions");
     var titleElement = document.querySelector("#question-title");
     titleElement.textContent = currentQuestion.title;
 
@@ -56,16 +57,22 @@ function showQuestions () {
         choiceElementButton.textContent = i + 1 + ". " + choice;
         choicesElement.appendChild(choiceElementButton);
         checkAnswer();
-        
-        function checkAnswer () {
+
+        function checkAnswer() {
             choiceElementButton.onclick = function () {
                 if (this.value === currentQuestion.answer) {
-                    alert("Correct!");
+                    nextQuestion();
                 } else {
-                    alert("Incorrect!");
                     timeLeft = timeLeft - 15;
                 }
             }
         }
     }
+
+    function nextQuestion() {
+        questionElement.innerHTML = "";
+        currentQuestionIndex++
+        showQuestions();
+    }
 }
+

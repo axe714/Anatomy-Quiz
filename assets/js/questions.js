@@ -23,7 +23,7 @@ var questions = [
   {
     title:
       "What is the largest bone in the body?",
-    choices: ["Femur", "Humerus", "Femur", "Skull"],
+    choices: ["Femur", "Humerus", "Tibia", "Skull"],
     answer: "Femur"
   },
   {
