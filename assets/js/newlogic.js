@@ -40,7 +40,7 @@ function startTimer() {
             quizEnd();
         }
         //decreases timer at a 1 second interval
-    }, 1000);
+    }, 2000);
 }
 
 //showQuestions function 
@@ -78,12 +78,6 @@ function showQuestions() {
         }
     }
 
-    
-    if (timeLeft <= 0 || currentQuestionIndex === questions.length) {
-        quizEnd();
-        clearInterval(timer);
-    }
-
     function correctFeedback() {
         feedBackElement.textContent = "Correct!";
         feedBackElement.setAttribute("class", "feedback");
@@ -101,7 +95,6 @@ function showQuestions() {
         }, 1000);
     }
 
-   
 }
 
  function quizEnd() {
@@ -117,7 +110,7 @@ function showQuestions() {
 function saveHighscore() {
     // get value of input box
     var initials = initialsElement.value.trim();
-  
+    
     // make sure value wasn't empty
     if (initials !== "") {
       // get saved scores from localstorage, or if not any, set to empty array
