@@ -7,9 +7,9 @@ var startButton = document.querySelector("#start");
 var questionsElement = document.querySelector("#questions");
 var endScreenElement = document.querySelector("#end-screen");
 var startScreenElement = document.querySelector("#start-screen");
-var currentQuestionIndex = 0;
+var feedBackElement = document.querySelector("#feedback");
 var choicesBodyElement = document.querySelector("#choices");
-
+var currentQuestionIndex = 0;
 
 startButton.addEventListener("click", startQuiz);
 
@@ -39,7 +39,7 @@ function startTimer() {
 }
 
 
-//showQuestions function [INCOMPLETE - to be added to the startQuiz function]
+//showQuestions function 
 function showQuestions() {
     choicesBodyElement.innerHTML = "";
     //sets the current question to the first question in the array
@@ -62,35 +62,48 @@ function showQuestions() {
         function checkAnswer() {
             choiceElementButton.onclick = function () {
                 if (this.value === currentQuestion.answer) {
-                    correctAnswer();
+                    currentQuestionIndex++;
+                    correctFeedback();
+                    showQuestions();
                 } else {
                     timeLeft = timeLeft - 15;
-                    incorrectAnswer();
+                    incorrectFeedback();
+
                 }
             }
         }
     }
 
-    function correctAnswer() {
-        currentQuestionIndex++;
-        showQuestions();
-    }
-
-    function incorrectAnswer() {
-        currentQuestionIndex++;
-        showQuestions();
-    }
-
-    if (currentQuestion.length === currentQuestionIndex) {
-        quizEnd();
+    function correctFeedback() {
+        feedBackElement.textContent = "Correct!";
+        feedBackElement.setAttribute("class", "feedback");
+        setTimeout(function() {
+          feedBackElement.setAttribute("class", "feedback hide");
+        }, 1000);
 
     }
 
+    function incorrectFeedback() {
+        feedBackElement.textContent = "Incorrect!";
+        feedBackElement.setAttribute("class", "feedback");
+        setTimeout(function() {
+          feedBackElement.setAttribute("class", "feedback hide");
+        }, 1000);
+    }
+
+    if (currentQuestionIndex === questions.length) {
+        alert("You have completed the quiz!");
+        // quizEnd();
+
+    }
+
+    //incomplete
     function quizEnd() {
         var finalScoreElement = document.querySelector("#final-score");
+        titleElement.innerHTML = "";
+        finalScoreElement.textContent = timeLeft;
         questionsElement.setAttribute("class", "hide");
         endScreenElement.removeAttribute("class", "hide");
-        finalScoreElement.textContent = timeLeft;
 
 
     }
