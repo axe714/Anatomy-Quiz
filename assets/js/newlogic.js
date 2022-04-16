@@ -98,52 +98,52 @@ function showQuestions() {
 
 }
 
- function quizEnd() {
-        var finalScoreElement = document.querySelector("#final-score");
-        titleElement.innerHTML = "";
-        finalScoreElement.textContent = timeLeft;
-        questionsElement.setAttribute("class", "hide");
-        endScreenElement.removeAttribute("class", "hide");
-        titleElement.setAttribute("class", "hide")
+function quizEnd() {
+    var finalScoreElement = document.querySelector("#final-score");
+    titleElement.innerHTML = "";
+    finalScoreElement.textContent = timeLeft;
+    questionsElement.setAttribute("class", "hide");
+    endScreenElement.removeAttribute("class", "hide");
+    titleElement.setAttribute("class", "hide")
 
-    }
+}
 
 function saveHighscore() {
     // get value of input box
     var initials = initialsElement.value.trim();
-    
+
     // make sure value wasn't empty
     if (initials !== "") {
-      // get saved scores from localstorage, or if not any, set to empty array
-      var highscores =
-        JSON.parse(window.localStorage.getItem("highscores")) || [];
-  
-      // format new score object for current user
-      var newScore = {
-        score: timeLeft,
-        initials: initials
-      };
-  
-      // save to localstorage
-      highscores.push(newScore);
-      window.localStorage.setItem("highscores", JSON.stringify(highscores));
-  
-      // redirect to next page
-      window.location.href = "highscores.html";
+        // get saved scores from localstorage, or if not any, set to empty array
+        var highscores =
+            JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+        // format new score object for current user
+        var newScore = {
+            score: timeLeft,
+            initials: initials
+        };
+
+        // save to localstorage
+        highscores.push(newScore);
+        window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+        // redirect to next page
+        window.location.href = "highscores.html";
     }
-  }
-  
-  function checkForEnter(event) {
+}
+
+function checkForEnter(event) {
     // "13" represents the enter key
     if (event.key === "Enter") {
-      saveHighscore();
+        saveHighscore();
     }
-  }
-  
-  // user clicks button to submit initials
-  submitButton.onclick = saveHighscore;
-  
-  // user clicks button to start quiz
-  startButton.onclick = startQuiz;
-  
-  initialsElement.onkeyup = checkForEnter;
+}
+
+// user clicks button to submit initials
+submitButton.onclick = saveHighscore;
+
+// user clicks button to start quiz
+startButton.onclick = startQuiz;
+
+initialsElement.onkeyup = checkForEnter;
