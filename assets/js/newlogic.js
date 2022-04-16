@@ -9,7 +9,11 @@ var endScreenElement = document.querySelector("#end-screen");
 var startScreenElement = document.querySelector("#start-screen");
 var feedBackElement = document.querySelector("#feedback");
 var choicesBodyElement = document.querySelector("#choices");
+var titleElement = document.querySelector("#question-title")
+var submitButton = document.querySelector("#submit")
+var initialsElement = document.querySelector("#initials")
 var currentQuestionIndex = 0;
+
 
 startButton.addEventListener("click", startQuiz);
 
@@ -31,13 +35,13 @@ function startTimer() {
         //display the time remaining on HTML page
         timerElement.textContent = timeLeft;
 
-        if (timeLeft === 0) {
+        if (timeLeft <= 0 || currentQuestionIndex === questions.length) {
             clearInterval(timer);
+            quizEnd();
         }
         //decreases timer at a 1 second interval
     }, 1000);
 }
-
 
 //showQuestions function 
 function showQuestions() {
@@ -74,6 +78,12 @@ function showQuestions() {
         }
     }
 
+    
+    if (timeLeft <= 0 || currentQuestionIndex === questions.length) {
+        quizEnd();
+        clearInterval(timer);
+    }
+
     function correctFeedback() {
         feedBackElement.textContent = "Correct!";
         feedBackElement.setAttribute("class", "feedback");
@@ -91,15 +101,10 @@ function showQuestions() {
         }, 1000);
     }
 
-    if (time <= 0 || currentQuestionIndex === questions.length) {
-        alert("YOU SUCK")
-        // clearInterval(timer);
-        // quizEnd();
-    }
+   
+}
 
-
-    //incomplete
-    function quizEnd() {
+ function quizEnd() {
         var finalScoreElement = document.querySelector("#final-score");
         titleElement.innerHTML = "";
         finalScoreElement.textContent = timeLeft;
@@ -108,50 +113,43 @@ function showQuestions() {
         titleElement.setAttribute("class", "hide")
 
     }
-}
 
-// if (currentQuestionIndex === questions.length) {
-//     alert("You have completed the quiz!");
-//     // quizEnd();
-
-// }
-
-// function saveHighscore() {
-//     // get value of input box
-//     var initials = initialsEl.value.trim();
+function saveHighscore() {
+    // get value of input box
+    var initials = initialsElement.value.trim();
   
-//     // make sure value wasn't empty
-//     if (initials !== "") {
-//       // get saved scores from localstorage, or if not any, set to empty array
-//       var highscores =
-//         JSON.parse(window.localStorage.getItem("highscores")) || [];
+    // make sure value wasn't empty
+    if (initials !== "") {
+      // get saved scores from localstorage, or if not any, set to empty array
+      var highscores =
+        JSON.parse(window.localStorage.getItem("highscores")) || [];
   
-//       // format new score object for current user
-//       var newScore = {
-//         score: time,
-//         initials: initials
-//       };
+      // format new score object for current user
+      var newScore = {
+        score: timeLeft,
+        initials: initials
+      };
   
-//       // save to localstorage
-//       highscores.push(newScore);
-//       window.localStorage.setItem("highscores", JSON.stringify(highscores));
+      // save to localstorage
+      highscores.push(newScore);
+      window.localStorage.setItem("highscores", JSON.stringify(highscores));
   
-//       // redirect to next page
-//       window.location.href = "highscores.html";
-//     }
-//   }
+      // redirect to next page
+      window.location.href = "highscores.html";
+    }
+  }
   
-//   function checkForEnter(event) {
-//     // "13" represents the enter key
-//     if (event.key === "Enter") {
-//       saveHighscore();
-//     }
-//   }
+  function checkForEnter(event) {
+    // "13" represents the enter key
+    if (event.key === "Enter") {
+      saveHighscore();
+    }
+  }
   
-//   // user clicks button to submit initials
-//   submitBtn.onclick = saveHighscore;
+  // user clicks button to submit initials
+  submitButton.onclick = saveHighscore;
   
-//   // user clicks button to start quiz
-//   startBtn.onclick = startQuiz;
+  // user clicks button to start quiz
+  startButton.onclick = startQuiz;
   
-//   initialsEl.onkeyup = checkForEnter;
+  initialsElement.onkeyup = checkForEnter;

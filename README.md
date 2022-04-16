@@ -5,3 +5,10 @@ This Anatomy Quiz is created to test the user's knowledge on the basic anatomy/p
 In the end, the amount of time left on the clock will represent the score that the user receives on their quiz. 
 
 A highscore window will appear at the end where the user can log their name along with the score that they have received during the quiz.
+
+An image of the Anatomy Quiz:
+
+![Anatomy Quiz](./assets/images/anatomyquiz.png)
+
+The Anatomy Quiz can be accessed here:
+
