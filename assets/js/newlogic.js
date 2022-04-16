@@ -37,7 +37,6 @@ function startTimer() {
 
         if (timeLeft <= 0 || currentQuestionIndex === questions.length) {
             clearInterval(timer);
-            timeLeft = 0;
             quizEnd();
         }
         //decreases timer at a 1 second interval
@@ -99,6 +98,9 @@ function showQuestions() {
 }
 
 function quizEnd() {
+    if (timeLeft <= 0) {
+        timeLeft = 0
+    }
     var finalScoreElement = document.querySelector("#final-score");
     titleElement.innerHTML = "";
     finalScoreElement.textContent = timeLeft;
