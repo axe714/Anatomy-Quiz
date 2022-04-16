@@ -37,6 +37,7 @@ function startTimer() {
 
         if (timeLeft <= 0 || currentQuestionIndex === questions.length) {
             clearInterval(timer);
+            timeLeft = 0;
             quizEnd();
         }
         //decreases timer at a 1 second interval

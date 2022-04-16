@@ -49,5 +49,41 @@ var questions = [
       "Which of the following best describes the process whereby the stomach muscles contract to propel food through the digestive tract?",
       choices: ["Absorbtion", "Peristalsis", "Regurtition", "Emulsion"],
       answer: "Peristalsis"
-  }
+  },
+  {
+    title: 
+      "Which of the following terms describes the body's ability to maintain its normal state?",
+      choices: ["Anabolism", "Catabolism", "Homeostasis", "Metabolism"],
+      answer: "Homeostasis"
+  },
+  {
+    title: 
+      "Which of the following best describes the human body's defense mechanism against environmental bacteria?",
+      choices: ["Hair in the nose", "Saliva", "Tears", "Mucous membranes"],
+      answer: "Mucous membranes"
+  },
+  {
+    title: 
+      "Which of the following is the body cavity that contains the pituitary gland?",
+      choices: ["Abdominal", "Spinal", "Cranial", "Thoracic"],
+      answer: "Cranial"
+  },
+  {
+    title: 
+      "Which of the following cavities are separated by the diaphragm?",
+      choices: ["Abdominal and pelvic", "Cranial and spinal", "Dorsal and ventral", "Thoracic and abdominal"],
+      answer: "Thoracic and abdominal"
+  },
+  {
+    title: 
+      "Which of the following best describes the structure that collects urine in the body?",
+      choices: ["Bladder", "Kidney", "Ureter", "Urethra"],
+      answer: "Bladder"
+  },
+  {
+    title: 
+      "Which of the following is the master gland of the endocrine system?",
+      choices: ["Adrenal", "Pituitary", "Thyroid", "Pineal"],
+      answer: "Pituitary"
+  },
 ];
