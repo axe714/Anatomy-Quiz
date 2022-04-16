@@ -65,10 +65,10 @@ function showQuestions() {
                     currentQuestionIndex++;
                     correctFeedback();
                     showQuestions();
-                } else {
+                }
+                else {
                     timeLeft = timeLeft - 15;
                     incorrectFeedback();
-
                 }
             }
         }
@@ -77,8 +77,8 @@ function showQuestions() {
     function correctFeedback() {
         feedBackElement.textContent = "Correct!";
         feedBackElement.setAttribute("class", "feedback");
-        setTimeout(function() {
-          feedBackElement.setAttribute("class", "feedback hide");
+        setTimeout(function () {
+            feedBackElement.setAttribute("class", "feedback hide");
         }, 1000);
 
     }
@@ -86,16 +86,17 @@ function showQuestions() {
     function incorrectFeedback() {
         feedBackElement.textContent = "Incorrect!";
         feedBackElement.setAttribute("class", "feedback");
-        setTimeout(function() {
-          feedBackElement.setAttribute("class", "feedback hide");
+        setTimeout(function () {
+            feedBackElement.setAttribute("class", "feedback hide");
         }, 1000);
     }
 
-    if (currentQuestionIndex === questions.length) {
-        alert("You have completed the quiz!");
+    if (time <= 0 || currentQuestionIndex === questions.length) {
+        alert("YOU SUCK")
+        // clearInterval(timer);
         // quizEnd();
-
     }
+
 
     //incomplete
     function quizEnd() {
@@ -104,9 +105,53 @@ function showQuestions() {
         finalScoreElement.textContent = timeLeft;
         questionsElement.setAttribute("class", "hide");
         endScreenElement.removeAttribute("class", "hide");
-
+        titleElement.setAttribute("class", "hide")
 
     }
 }
 
+// if (currentQuestionIndex === questions.length) {
+//     alert("You have completed the quiz!");
+//     // quizEnd();
 
+// }
+
+// function saveHighscore() {
+//     // get value of input box
+//     var initials = initialsEl.value.trim();
+  
+//     // make sure value wasn't empty
+//     if (initials !== "") {
+//       // get saved scores from localstorage, or if not any, set to empty array
+//       var highscores =
+//         JSON.parse(window.localStorage.getItem("highscores")) || [];
+  
+//       // format new score object for current user
+//       var newScore = {
+//         score: time,
+//         initials: initials
+//       };
+  
+//       // save to localstorage
+//       highscores.push(newScore);
+//       window.localStorage.setItem("highscores", JSON.stringify(highscores));
+  
+//       // redirect to next page
+//       window.location.href = "highscores.html";
+//     }
+//   }
+  
+//   function checkForEnter(event) {
+//     // "13" represents the enter key
+//     if (event.key === "Enter") {
+//       saveHighscore();
+//     }
+//   }
+  
+//   // user clicks button to submit initials
+//   submitBtn.onclick = saveHighscore;
+  
+//   // user clicks button to start quiz
+//   startBtn.onclick = startQuiz;
+  
+//   initialsEl.onkeyup = checkForEnter;

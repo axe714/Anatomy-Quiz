@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Gafata&display=swap');
+
 body {
-  font-family: Arial;
-  font-size: 120%;
+  font-family:'Gafata', sans-serif;
+  font-size: 200%;
+  color: paleturquoise;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(105,24,24,1) 69%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 a {
-  color: #563d7c;
+  color: #ffffff;
   text-decoration: none;
   transition: color 0.1s;
 }
@@ -27,7 +35,8 @@ button {
 }
 
 button:hover {
-  background-color: #8570a5;
+  background-color: wheat;
+  color: black
 }
 
 .choices button {
